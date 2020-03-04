@@ -1,0 +1,1 @@
+{"title":"Ultimate ","description":"- Special: Dash\n- Increased Arrow Damage","maxHealth":50.0,"healthRegenRate":0.0,"maxAbility":50.0,"abilityChargeRate":20.0,"shotsPerSecond":4.0,"projectileForce":4.0,"shotDamageMin":15.0,"shotDamageMax":20.0,"shotSpread":1,"moveSpeed":6.0,"canDash":true,"dashSpeed":15.0,"dashTime":0.10000000149011612,"dashCost":50.0,"invulnerable":false}
