@@ -47,3 +47,5 @@ MonoBehaviour:
   - {fileID: 9101620839925932836, guid: 3e169a1a5d3cb67489b36f448f422513, type: 3}
   spawnDelay: 4
   spawnAmount: -1
+  rangeX: 6.27
+  rangeY: 6.36

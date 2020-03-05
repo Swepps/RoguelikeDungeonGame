@@ -50,10 +50,21 @@ public class PauseMenu : MonoBehaviour
         levelUpUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;        
-        string skillsString;
+        //string skillsString;
         button3Object = GameObject.Find("Path Three Button");
 
-        // getting the correct stats from the files and loading them in
+        switch (PlayerStats.playerStats.level)
+        {
+            case 0:
+                potentialSkills = new SkillPath[3];
+                for (int i = 0; i < 3; i++)
+                {
+                    potentialSkills[i] = SkillPath.skillPaths[i + 1];
+                }
+                break;
+        }
+
+        /*// getting the correct stats from the files and loading them in
         if (PlayerStats.playerStats.level == 1)
         {
             potentialSkills = new SkillPath[2];
@@ -98,7 +109,7 @@ public class PauseMenu : MonoBehaviour
                 skillsString = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "skills", (PlayerStats.playerStats.level + 2) + "-" + (i + PlayerStats.playerStats.path) + ".json"));
                 potentialSkills[i + 1] = JsonUtility.FromJson<SkillPath>(skillsString);
             }
-        }
+        }*/
 
         // sets the buttons to their correct settings
         if (potentialSkills.Length == 2)

@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     public float spawnDelay;
     public int spawnAmount; // -1 means infinite
 
+    [Range(0, 10f)]
+    public float rangeX, rangeY;
     private float x, y;
     private Vector3 spawnPos;
     private GameObject player;
@@ -26,8 +28,8 @@ public class EnemySpawner : MonoBehaviour
                 yield return new WaitForSeconds(spawnDelay);
                 do
                 {
-                    x = Random.Range(-8f, 8f);
-                    y = Random.Range(-8f, 8f);
+                    x = Random.Range(-rangeX, rangeX);
+                    y = Random.Range(-rangeY, rangeY);
                     spawnPos = transform.position;
                     spawnPos.x += x;
                     spawnPos.y += y;

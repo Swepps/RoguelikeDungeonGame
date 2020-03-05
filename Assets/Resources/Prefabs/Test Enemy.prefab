@@ -63,6 +63,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -170,6 +172,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -4822,7 +4826,7 @@ ParticleSystem:
 --- !u!199 &2048140779714004053
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 7376205690907533909, guid: 6a56e4183d4793a46837e2897a18fcc1,
     type: 3}
   m_PrefabInstance: {fileID: 8805098910224377344}
@@ -4983,6 +4987,8 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+    m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &6630980298592166362
 GameObject:
   m_ObjectHideFlags: 0
@@ -5307,7 +5313,7 @@ MonoBehaviour:
   coin: {fileID: 3791461768808099987, guid: 26982f859b5b8f2439ac9ecdd70084f1, type: 3}
   exp: {fileID: 3791461768808099987, guid: d4150d8f7c6e50f43954562ed829f16c, type: 3}
   coinAmount: 0
-  expAmount: 30
+  expAmount: 10
   hitSound: DemonHit
   deathSound: DemonDeath
   projectile: {fileID: 8859452300765557663, guid: 0d3580670f58b6542a4d713b5f0ffd07,
@@ -5323,6 +5329,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6018640114617058740}
     m_Modifications:
+    - target: {fileID: 6174939623233995891, guid: 6a56e4183d4793a46837e2897a18fcc1,
+        type: 3}
+      propertyPath: m_Name
+      value: OnFire
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174939623233995891, guid: 6a56e4183d4793a46837e2897a18fcc1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4016251561608894748, guid: 6a56e4183d4793a46837e2897a18fcc1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5376,16 +5392,6 @@ PrefabInstance:
     - target: {fileID: 4016251561608894748, guid: 6a56e4183d4793a46837e2897a18fcc1,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6174939623233995891, guid: 6a56e4183d4793a46837e2897a18fcc1,
-        type: 3}
-      propertyPath: m_Name
-      value: OnFire
-      objectReference: {fileID: 0}
-    - target: {fileID: 6174939623233995891, guid: 6a56e4183d4793a46837e2897a18fcc1,
-        type: 3}
-      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

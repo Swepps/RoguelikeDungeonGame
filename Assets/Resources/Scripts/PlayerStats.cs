@@ -50,8 +50,8 @@ public class PlayerStats : MonoBehaviour
     // run when player is created
     private void Start()
     {
-        string skillsString = File.ReadAllText(Path.Combine(Application.streamingAssetsPath, "Skills", "1-0.json"));
-        stats = JsonUtility.FromJson<SkillPath>(skillsString);
+        SkillPath.InitialiseSkillPaths();
+        stats = SkillPath.skillPaths[0];
 
         health = stats.maxHealth;
         ability = 0;
