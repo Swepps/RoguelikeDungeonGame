@@ -9,14 +9,12 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool GameIsPaused = false;
     public GameObject levelUpUI;
-    public Button button1, button2, button3;
-    private GameObject button3Object;
+    public GameObject button1, button2, button3;
     private SkillPath[] potentialSkills;
     private Text[] textObjects;
 
     private void Start()
     {
-        button3Object = GameObject.Find("Path Three Button");
     }
 
     private void Update()
@@ -35,7 +33,7 @@ public class PauseMenu : MonoBehaviour
         levelUpUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
-        button3Object.SetActive(true);
+        button3.SetActive(true);
     }
 
     public void Pause()
@@ -50,8 +48,6 @@ public class PauseMenu : MonoBehaviour
         levelUpUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;        
-        //string skillsString;
-        button3Object = GameObject.Find("Path Three Button");
 
         switch (PlayerStats.playerStats.level)
         {
@@ -124,22 +120,22 @@ public class PauseMenu : MonoBehaviour
             textObjects[0].text = potentialSkills[1].title;
             textObjects[2].text = potentialSkills[1].description;
 
-            button3Object.SetActive(false);
+            button3.SetActive(false);
         }
         else
         {
-            button1.transform.localPosition = new Vector3(-330, -32, 0);
+            button1.GetComponent<RectTransform>().anchoredPosition = new Vector2(144, -32);
             textObjects = button1.GetComponentsInChildren<Text>();
             textObjects[0].text = potentialSkills[0].title;
             textObjects[2].text = potentialSkills[0].description;
 
-            button2.transform.localPosition = new Vector3(0, -32, 0);
+            button2.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, -32);
             textObjects = button2.GetComponentsInChildren<Text>();
             textObjects[0].text = potentialSkills[1].title;
             textObjects[2].text = potentialSkills[1].description;
 
-            button3Object.SetActive(true);
-            button3.transform.localPosition = new Vector3(330, -32, 0);
+            button3.SetActive(true);
+            button3.GetComponent<RectTransform>().anchoredPosition = new Vector2(-144, -32);
             textObjects = button3.GetComponentsInChildren<Text>();
             textObjects[0].text = potentialSkills[2].title;
             textObjects[2].text = potentialSkills[2].description;
