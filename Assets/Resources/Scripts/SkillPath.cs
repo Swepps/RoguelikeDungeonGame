@@ -50,6 +50,7 @@ public class SkillPath
 
     public static SkillPath[] skillPaths;
 
+    // hard coding in the values in order to work with WebGL
     public static void InitialiseSkillPaths()
     {
         skillPaths = new SkillPath[26];
