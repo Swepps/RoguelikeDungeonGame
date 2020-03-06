@@ -1,0 +1,21 @@
+{
+    "title": "",
+    "description": "",
+    "weapon": 0,
+    "special": 0,
+    "maxHealth": 0.0,
+    "healthRegenRate": 0.0,
+    "maxAbility": 0.0,
+    "abilityChargeRate": 0.0,
+    "abilityCost": 0.0,
+    "attacksPerSecond": 0.0,
+    "projectileForce": 0.0,
+    "projectileRange": 0.0,
+    "damageMin": 0.0,
+    "damageMax": 0.0,
+    "knockback": 0.0,
+    "shotSpread": 0,
+    "parallel": false,
+    "moveSpeed": 0.0,
+    "invulnerable": false
+}
