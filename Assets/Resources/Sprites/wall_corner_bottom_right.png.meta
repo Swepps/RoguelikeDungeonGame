@@ -96,7 +96,9 @@ TextureImporter:
     sprites: []
     outline: []
     physicsShape:
-    - - {x: 3, y: -8}
+    - - {x: -8, y: -8}
+      - {x: -8, y: -4}
+      - {x: 3, y: -4}
       - {x: 3, y: 8}
       - {x: 8, y: 8}
       - {x: 8, y: -8}

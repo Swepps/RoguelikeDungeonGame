@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 49260a095408064449c1a90f8e21f095
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - slime: {fileID: 791721101649943795, guid: c3239a87ec002fb46a4f129cd807757c, type: 3}
+  - bigDemon: {fileID: 791721101649943795, guid: 39bb0fca3df06bd438134bf2294ba654,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
     public GameObject settingsPanel;
+    public LevelChanger levelChanger;
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+        levelChanger.FadeToLevel(1);
     }
 
     public void OpenSettings()

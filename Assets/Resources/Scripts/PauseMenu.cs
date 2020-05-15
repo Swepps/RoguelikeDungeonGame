@@ -146,8 +146,8 @@ public class PauseMenu : MonoBehaviour
     {
         PlayerStats.playerStats.stats = potentialSkills[path];
         PlayerStats.playerStats.path = PlayerStats.playerStats.stats.path;
-        PlayerStats.playerStats.GetPlayer().GetComponent<Player>().UpdateStats();
-        PlayerStats.playerStats.GetPlayer().GetComponentInChildren<Weapon>().UpdateStats();
+        PlayerStats.playerStats.GetPlayerObject().GetComponent<Player>().UpdateStats();
+        PlayerStats.playerStats.GetPlayerObject().GetComponentInChildren<Weapon>().UpdateStats();
         Resume();
     }
 }

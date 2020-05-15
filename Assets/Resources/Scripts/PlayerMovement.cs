@@ -15,11 +15,14 @@ public class PlayerMovement : MonoBehaviour
     public float maxSpeed;
     public bool lockMovement;
 
+    private bool recoiling;
+
     private void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
         animator.runtimeAnimatorController = Resources.Load("Animation/elf_movement_controller") as RuntimeAnimatorController;
+        recoiling = false;
     }
 
     void Update()
@@ -40,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         {
             animator.SetLayerWeight(1, 0);
         }
+        animator.SetFloat("moveSpeed", moveSpeed/maxSpeed);
     }
 
     public void PlayFootStep()
@@ -50,17 +54,26 @@ public class PlayerMovement : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("FootStep");
     }
 
+    public void Recoil(Vector2 recoilForce)
+    {
+        recoiling = true;
+        rb.AddForce(recoilForce, ForceMode2D.Impulse);
+    }
+
     private void FixedUpdate()
     {
         // movement
-        rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        if (!recoiling)
+            rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        else if (Mathf.Abs(rb.velocity.x) < 1f && Mathf.Abs(rb.velocity.y) < 1f)
+            recoiling = false;
     }
 
     private void SetSpriteDirection(Vector2 direction)
     {
         animator.SetLayerWeight(1, 1);
-        animator.SetFloat("xDir", direction.x);
-        animator.SetFloat("yDir", direction.y);
+        //animator.SetFloat("xDir", direction.x);
+        //animator.SetFloat("yDir", direction.y);
 
         if (direction.x < 0)
             spriteRenderer.flipX = true;

@@ -10,6 +10,10 @@ public class Projectile : MonoBehaviour
     protected Vector2 startPos;
     public string[] collisionTags;
     public string shootSound;
+    public Enemy.Debuff enemyDebuff;
+    public Player.Debuff playerDebuff;
+    public float debuffTime;
+    public bool playerProjectile;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -21,10 +25,13 @@ public class Projectile : MonoBehaviour
                 if (collision.tag == "Enemy")
                 {
                     collision.GetComponent<Enemy>().DealDamage(damage, transform.position, knockback);
+                    collision.GetComponent<Enemy>().InflictDebuff(enemyDebuff, debuffTime);
                 }
                 if (collision.tag == "Player")
                 {
-                    PlayerStats.playerStats.DealDamage(damage);
+                    Debug.Log(knockback);
+                    PlayerStats.playerStats.GetPlayer().DealDamage(damage, transform.position, knockback);
+                    PlayerStats.playerStats.GetPlayer().InflictDebuff(playerDebuff, debuffTime);
                 }
                 Destroy(gameObject);
                 break;
@@ -34,9 +41,12 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        startPos = transform.position;
-        knockback = PlayerStats.playerStats.stats.knockback;
-        range = PlayerStats.playerStats.stats.projectileRange;
+        startPos = transform.position;        
+        if (playerProjectile)
+        {
+            knockback = PlayerStats.playerStats.stats.knockback;
+            range = PlayerStats.playerStats.stats.projectileRange;
+        }
         FindObjectOfType<AudioManager>().Play(shootSound);
     }
 

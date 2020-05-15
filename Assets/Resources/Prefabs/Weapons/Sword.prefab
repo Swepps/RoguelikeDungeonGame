@@ -152,7 +152,7 @@ GameObject:
   - component: {fileID: 4752143306511592595}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Projectile
+  m_TagString: Sword
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

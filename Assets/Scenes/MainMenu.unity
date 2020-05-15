@@ -237,6 +237,85 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 54245126}
   m_CullTransparentMesh: 0
+--- !u!1001 &601232338
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343721406358, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_Name
+      value: LevelChanger
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343935699889, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3099903343935699891, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e1651e9dc9077ad4aba3ecc37f8a9f26, type: 3}
 --- !u!1 &625474967
 GameObject:
   m_ObjectHideFlags: 0
@@ -521,7 +600,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Roguelike
+  m_Text: Dungeon Escape
 --- !u!222 &912402582
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -916,6 +995,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settingsPanel: {fileID: 1176651981}
+  levelChanger: {fileID: 1241319829}
+--- !u!114 &1241319829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3099903343721406355, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+    type: 3}
+  m_PrefabInstance: {fileID: 601232338}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487a23d843307c148b29b423892ddb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1257504517
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,11 @@ TagManager:
   - Walls
   - Particle
   - EnemyProjectile
+  - Door
+  - Rooms
+  - RoomSpawner
+  - Room
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -20,9 +25,9 @@ TagManager:
   - 
   - 
   - Walls
-  - 
-  - 
-  - 
+  - Triggers
+  - Enemy Colliders
+  - Player Collider
   - 
   - 
   - 
@@ -58,4 +63,7 @@ TagManager:
     locked: 0
   - name: Walls Front
     uniqueID: 4044519087
+    locked: 0
+  - name: Text
+    uniqueID: 2813583145
     locked: 0

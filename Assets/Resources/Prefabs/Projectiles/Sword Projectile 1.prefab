@@ -179,9 +179,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 3
+  knockback: 0
   collisionTags:
   - Enemy
   - Walls
+  shootSound: 
+  enemyDebuff: 2
+  playerDebuff: 2
+  debuffTime: 0
+  playerProjectile: 1
 --- !u!114 &114971431763375250
 MonoBehaviour:
   m_ObjectHideFlags: 0

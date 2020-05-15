@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Currency : MonoBehaviour
 {
-    public enum CurrencyType { COIN, EXP };
+    public enum CurrencyType { COIN, EXP, HEALTH, OGREKEY, DEMONKEY, ZOMBIEKEY };
     public CurrencyType type;
 
     private GameObject player;    
@@ -18,7 +18,6 @@ public class Currency : MonoBehaviour
     public float driftDistance;
     private Vector2 driftPos;
     public int quantity;
-    
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -28,23 +27,47 @@ public class Currency : MonoBehaviour
         {
             if (type == CurrencyType.COIN)
             {
-                PlayerStats.playerStats.coins += quantity;
-                PlayerStats.playerStats.SetCoins();
+                // PlayerStats.playerStats.coins += quantity;
+                PlayerStats.playerStats.SetLevelUI();
                 Destroy(gameObject);
             }
-            else
+            else if (type == CurrencyType.EXP)
             {
                 PlayerStats.playerStats.experience += quantity;
                 PlayerStats.playerStats.SetExpUI();
                 Destroy(gameObject);
                 FindObjectOfType<AudioManager>().Play("ExpPop");
-            }            
+            }
+            else if (type == CurrencyType.HEALTH)
+            {
+                PlayerStats.playerStats.HealCharacter(quantity);
+                Destroy(gameObject);
+                FindObjectOfType<AudioManager>().Play("HealthPickup");
+            }
+            else if (type == CurrencyType.DEMONKEY)
+            {
+                PlayerStats.playerStats.GiveDemonKey();
+                Destroy(gameObject);
+                FindObjectOfType<AudioManager>().Play("KeyGet");
+            }
+            else if (type == CurrencyType.OGREKEY)
+            {
+                PlayerStats.playerStats.GiveOgreKey();
+                Destroy(gameObject);
+                FindObjectOfType<AudioManager>().Play("KeyGet");
+            }
+            else if (type == CurrencyType.ZOMBIEKEY)
+            {
+                PlayerStats.playerStats.GiveZombieKey();
+                Destroy(gameObject);
+                FindObjectOfType<AudioManager>().Play("KeyGet");
+            }
         }
     }
 
     private void Start()
     {
-        player = PlayerStats.playerStats.GetPlayer();
+        player = PlayerStats.playerStats.GetPlayerObject();
         currentAcc = 0;
         speed = 0;
         startMoving = false;

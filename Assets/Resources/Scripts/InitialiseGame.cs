@@ -5,6 +5,7 @@ using UnityEngine;
 public class InitialiseGame : MonoBehaviour
 {
     public static InitialiseGame game;
+    public EnemyCollections enemyCollection;
     public GameObject spawner;
 
     private void Awake()
@@ -17,10 +18,12 @@ public class InitialiseGame : MonoBehaviour
         {
             game = this;
         }
+        SkillPath.InitialiseSkillPaths();
     }
 
     public void Start()
     {
-        Instantiate(spawner, Vector2.zero, Quaternion.identity);
+        // Instantiate(spawner, Vector2.zero, Quaternion.identity);
+        
     }
 }

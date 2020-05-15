@@ -2,38 +2,69 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyShoot : Enemy
+public class EnemyShoot : MonoBehaviour
 {
-    public GameObject projectile;
-    private GameObject player;
-    private Transform playerPos;
+    public List<GameObject> projectiles;
+    private int projectileNum = 0;
+    private Transform target;
+
     public float minDamage;
     public float maxDamage;
     public float projectileForce;
     public float cooldown;
 
-    override protected void Start()
-    {
-        base.Start();
-        player = PlayerStats.playerStats.GetPlayer();
+    private bool CR_Running = false;
+    private bool isPaused = false;
 
-        if (player != null)
+    public void StartShooting(Transform target)
+    {
+        if (!CR_Running)
         {
-            playerPos = player.transform;
-            StartCoroutine(ShootPlayer());
-        }      
+            this.target = target;
+            StartCoroutine(ShootTarget());
+        }
     }
 
-    IEnumerator ShootPlayer()
+    public void StopShooting()
     {
-        while (player != null)
+        CR_Running = false;
+    }
+
+    public void PauseShooting()
+    {
+        isPaused = true;
+    }
+
+    public void ResumeShooting()
+    {
+        isPaused = false;
+    }
+
+    public bool IsShooting()
+    {
+        return CR_Running;
+    }
+
+    IEnumerator ShootTarget()
+    {
+        CR_Running = true;
+        while (CR_Running)
         {
-            GameObject spell = Instantiate(projectile, transform.position, Quaternion.identity);
+            if (projectileNum > projectiles.Count - 1)
+                projectileNum = 0;
+            GameObject projectileClone = Instantiate(projectiles[projectileNum], transform.position, Quaternion.identity);
+            projectileNum++;
             Vector2 myPos = transform.position;
-            Vector2 targetPos = playerPos.position - new Vector3(0, +0.25f, 0);
+            Vector2 targetPos = target.position;
             Vector2 direction = (targetPos - myPos).normalized;
-            spell.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-            spell.GetComponent<TestEnemyProjectile>().damage = Random.Range(minDamage, maxDamage);
+            projectileClone.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
+            projectileClone.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));    
+
+            while (isPaused)
+            {
+                yield return null;
+            }
+
             yield return new WaitForSeconds(cooldown);
         }
     }

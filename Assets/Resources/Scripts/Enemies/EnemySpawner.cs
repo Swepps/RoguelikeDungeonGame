@@ -16,7 +16,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        player = PlayerStats.playerStats.GetPlayer();
+        player = PlayerStats.playerStats.GetPlayerObject();
         StartCoroutine(SpawnEnemy());
     }
 

@@ -97,8 +97,8 @@ TextureImporter:
     outline: []
     physicsShape:
     - - {x: -8, y: -8}
-      - {x: -8, y: -3}
-      - {x: -3, y: -3}
+      - {x: -8, y: -4}
+      - {x: -3, y: -4}
       - {x: -3, y: -8}
     bones: []
     spriteID: a08f161f5b6f5794c855ad74b72c9600

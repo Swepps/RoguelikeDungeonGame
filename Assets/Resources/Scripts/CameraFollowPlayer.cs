@@ -10,7 +10,7 @@ public class CameraFollowPlayer : MonoBehaviour
 
     private void Start()
     {
-        player = PlayerStats.playerStats.GetPlayer();
+        player = PlayerStats.playerStats.GetPlayerObject();
     }
 
     private void FixedUpdate()

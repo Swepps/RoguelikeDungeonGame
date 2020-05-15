@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Fireball : Projectile
 {
-    public float damageOverTimeAmount;
     public float damageOverTimeLength;
     public string impactSound;
 
@@ -18,11 +17,13 @@ public class Fireball : Projectile
             {
                 if (collision.tag == "Enemy")
                 {
-                    collision.GetComponent<Enemy>().DealDamage(damage, transform.position, knockback, damageOverTimeAmount, damageOverTimeLength, Enemy.DamageOverTimeType.FIRE);
+                    collision.GetComponent<Enemy>().DealDamage(damage, transform.position, knockback);
+                    collision.GetComponent<Enemy>().InflictDebuff(Enemy.Debuff.BURN, damageOverTimeLength);
                 }
                 if (collision.tag == "Player")
                 {
-                    PlayerStats.playerStats.DealDamage(damage);
+                    PlayerStats.playerStats.GetPlayer().DealDamage(damage, transform.position, knockback);
+                    PlayerStats.playerStats.GetPlayer().InflictDebuff(Player.Debuff.BURN, damageOverTimeLength);
                 }
                 DestroyObject();
                 break;
@@ -38,8 +39,11 @@ public class Fireball : Projectile
 
     protected void DestroyObject()
     {
-        GameObject particles = transform.GetChild(0).gameObject;
-        Destroy(particles, 0.15f);
+        GameObject particles = transform.GetComponentInChildren<ParticleSystem>().gameObject;
+        if (transform.GetComponentInChildren<ParticleSystem>() != null)
+        {
+            Destroy(particles, 0.15f);
+        }
         transform.DetachChildren();
         Destroy(gameObject);
     }

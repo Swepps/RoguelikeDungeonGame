@@ -11,15 +11,19 @@ public class PlayerStats : MonoBehaviour
 
     public GameObject playerPrefab;
     private GameObject localPlayer;
+    public Transform playerPos;
     public Text healthText;
     public Slider healthSlider;
     public Text abilityText;
     public Slider abilitySlider;
-    public Text coinsText;
+    public Text levelText;
     public Slider expSlider;
     public Image expFill;
     public Text enemiesKilledText;
     public PauseMenu pauseMenu;
+
+    public GameObject demonKeyImg, zombieKeyImg, ogreKeyImg;
+    public bool demonKey, zombieKey, ogreKey;
 
     public SkillPath stats;
 
@@ -31,8 +35,10 @@ public class PlayerStats : MonoBehaviour
     public int level, path;
     public int[] levels = { 30, 5000};
     public float experience;
-    public int coins;
 
+    public float healthRegen;
+
+    private float damageCooldown = 0;
 
     // also run when player is created??
     private void Awake()
@@ -49,11 +55,11 @@ public class PlayerStats : MonoBehaviour
 
     // run when player is created
     private void Start()
-    {
-        SkillPath.InitialiseSkillPaths();
+    {        
         stats = SkillPath.skillPaths[0];
 
         health = stats.maxHealth;
+        healthRegen = stats.healthRegenRate;
         ability = 0;
         level = 0;
         path = 0;
@@ -61,7 +67,11 @@ public class PlayerStats : MonoBehaviour
         SetAbilityUI();
         SetExpUI();
         stats.invulnerable = false;
-        localPlayer = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity);        
+        localPlayer = Instantiate(playerPrefab, Vector2.zero, Quaternion.identity);
+        playerPos = localPlayer.transform;
+        zombieKey = false;
+        demonKey = false;
+        ogreKey = false;
     }
 
     private void Update()
@@ -72,22 +82,29 @@ public class PlayerStats : MonoBehaviour
             ability = stats.maxAbility;
         SetAbilityUI();
 
-        if (health < stats.maxHealth)
-            health += stats.healthRegenRate * Time.deltaTime;
-        else
-            health = stats.maxHealth;
+        if (!stats.invulnerable)
+            health += healthRegen * Time.deltaTime;
         SetHealthUI();
+
+        if (damageCooldown > 0)
+        {
+            damageCooldown -= Time.deltaTime;
+        }
     }
 
     // damages the player
     public void DealDamage(float damage)
     {
-        if (!stats.invulnerable)
-        {            
-            health -= damage;
-            CheckDeath();
-            SetHealthUI();
-        }        
+        if (damageCooldown <= 0)
+        {
+            if (!stats.invulnerable)
+            {
+                health -= damage;
+                CheckDeath();
+                SetHealthUI();
+                damageCooldown = 0.2f;
+            }
+        }
     }
 
     // heals the player
@@ -113,12 +130,21 @@ public class PlayerStats : MonoBehaviour
         if (health <= 0)
         {
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
+            FindObjectOfType<AudioManager>().Play("GameOver");
             health = 0;
-            Destroy(localPlayer);
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(0);        
         }
         else
             FindObjectOfType<AudioManager>().Play("PlayerHit");
+    }
+
+    // checks to see if the user won
+    private void CheckWin()
+    {
+        if (demonKey && ogreKey && zombieKey)
+        {
+            FindObjectOfType<AudioManager>().Play("WinNoise");
+        }
     }
 
     // Sets the UI health bar and text
@@ -155,6 +181,7 @@ public class PlayerStats : MonoBehaviour
                 pauseMenu.LevelUpWindow();
                 level++;
                 experience = 0;
+                SetLevelUI();
             }            
         }
         else // at max level will make the shotsPerSecond increase slowly 
@@ -167,15 +194,20 @@ public class PlayerStats : MonoBehaviour
     }
 
     // Sets the coins amount
-    public void SetCoins()
+    public void SetLevelUI()
     {
-        coinsText.text = "Coins: " + coins;
+        levelText.text = "LEVEL " + (level + 1);
     }
 
     // returns the instantiated player object
-    public GameObject GetPlayer()
+    public GameObject GetPlayerObject()
     {
         return localPlayer;
+    }
+
+    public Player GetPlayer()
+    {
+        return localPlayer.GetComponent<Player>();
     }
 
     // returns between 0 and 1 the percentage of health left
@@ -188,5 +220,26 @@ public class PlayerStats : MonoBehaviour
     {
         string skillsString = JsonUtility.ToJson(new SkillPath(weapon, special));
         File.WriteAllText(Path.Combine(Application.dataPath, "skills", "blank.json"), skillsString);
+    }
+
+    public void GiveDemonKey()
+    {
+        demonKeyImg.SetActive(true);
+        demonKey = true;
+        CheckWin();
+    }
+
+    public void GiveOgreKey()
+    {
+        ogreKeyImg.SetActive(true);
+        ogreKey = true;
+        CheckWin();
+    }
+
+    public void GiveZombieKey()
+    {
+        zombieKeyImg.SetActive(true);
+        zombieKey = true;
+        CheckWin();
     }
 }

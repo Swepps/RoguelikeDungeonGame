@@ -99,7 +99,9 @@ TextureImporter:
     - - {x: -8, y: -8}
       - {x: -8, y: 8}
       - {x: -3, y: 8}
-      - {x: -3, y: -8}
+      - {x: -3, y: -4}
+      - {x: 8, y: -4}
+      - {x: 8, y: -8}
     bones: []
     spriteID: c13a3fe09d9bc944b9a95ec9a3ed2b43
     vertices: []

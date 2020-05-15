@@ -46,7 +46,7 @@ MonoBehaviour:
   sounds:
   - name: Music
     clip: {fileID: 8300000, guid: c16fbd5cfc78c9344b770f08c7d8664c, type: 3}
-    volume: 0.106
+    volume: 0.078
     pitch: 1.2
     loop: 1
     source: {fileID: 0}
@@ -136,6 +136,54 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: WizardFootStep
     clip: {fileID: 8300000, guid: f8ff08df56960004bb4970eb71d9e895, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: DoorOpen
+    clip: {fileID: 8300000, guid: 743a3503201c6134a87fcf5b8b36380b, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: GameOver
+    clip: {fileID: 8300000, guid: 5a7188d1df22f6648bc0bb2e29d8d96f, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: HealthPickup
+    clip: {fileID: 8300000, guid: 456358af40b1bba4db4151caacb373e7, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: KeyGet
+    clip: {fileID: 8300000, guid: 5e41fa10d986c6f45b025adb225e5246, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: RockImpact
+    clip: {fileID: 8300000, guid: c7522986a348517439130af228917c1d, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SlimeWalk
+    clip: {fileID: 8300000, guid: 3df3f10f0ca094e4c92c498ac0d32a51, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: SwordSwing2
+    clip: {fileID: 8300000, guid: 23b06ac47464b1f4d9a45b7c0af0b976, type: 3}
+    volume: 0.977
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: WinNoise
+    clip: {fileID: 8300000, guid: 6e61b36dc8d460240a8001f47f8f0c25, type: 3}
     volume: 0.977
     pitch: 1
     loop: 0

@@ -43,7 +43,7 @@ ParticleSystem:
   serializedVersion: 6
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 2
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -4861,11 +4861,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
-  knockback: 5
+  knockback: 1
   collisionTags:
   - Walls
   - Enemy
   shootSound: FireBallShoot
-  damageOverTimeAmount: 2
+  enemyDebuff: 0
+  playerDebuff: 0
+  debuffTime: 0
+  playerProjectile: 1
   damageOverTimeLength: 6
   impactSound: FireBallImpact

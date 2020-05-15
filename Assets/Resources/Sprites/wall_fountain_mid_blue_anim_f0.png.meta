@@ -94,12 +94,16 @@ TextureImporter:
   spriteSheet:
     serializedVersion: 2
     sprites: []
-    outline: []
-    physicsShape:
-    - - {x: -8, y: -8}
-      - {x: -8, y: -3}
-      - {x: 8, y: -3}
+    outline:
+    - - {x: -8, y: 8}
+      - {x: -8, y: -8}
       - {x: 8, y: -8}
+      - {x: 8, y: 8}
+    physicsShape:
+    - - {x: -8, y: 8}
+      - {x: -8, y: -8}
+      - {x: 8, y: -8}
+      - {x: 8, y: 8}
     bones: []
     spriteID: 10d0948af9081d94ba8a205b6c8af2fa
     vertices: []

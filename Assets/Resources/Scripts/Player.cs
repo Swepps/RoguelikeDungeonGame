@@ -5,8 +5,20 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public PlayerMovement playerMovement;
+    private SpriteRenderer spriteRenderer;
     private GameObject bow, sword, staff;
     private SpecialAttack oldSpecial;
+
+    public enum Debuff { BURN, POISON, BLEED, SLOW, PARALYSE, WEAK, NONE }
+
+    private float burnTime, poisonTime, bleedTime, slowTime, paralyseTime, weakTime;
+    public float burnDamage, poisonDamage, bleedDamage;
+
+    private Rigidbody2D rb;
+    public GameObject burned, poisoned, bleeding, slowed, paralysed, weakened;
+
+    private PlayerStats stats;
+    private float minDamage, maxDamage;
 
     void Start()
     {       
@@ -15,6 +27,8 @@ public class Player : MonoBehaviour
         bow = gameObject.transform.GetChild(0).gameObject;
         sword = gameObject.transform.GetChild(1).gameObject;
         staff = gameObject.transform.GetChild(2).gameObject;
+        rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         UpdateStats();
     }
 
@@ -23,21 +37,84 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I))
         {
-            PlayerStats.playerStats.stats.invulnerable = !PlayerStats.playerStats.stats.invulnerable;
-            print(PlayerStats.playerStats.stats.invulnerable);
+            stats.stats.invulnerable = !stats.stats.invulnerable;
+            Debug.Log("Invulnerable: " + stats.stats.invulnerable);
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            stats.experience = stats.levels[stats.level];
+            stats.SetExpUI();
+        }
+        stats.healthRegen = stats.stats.healthRegenRate;
+        playerMovement.moveSpeed = playerMovement.maxSpeed;
+        stats.stats.damageMin = minDamage;
+        stats.stats.damageMax = maxDamage;
+        if (burnTime > 0)
+        {
+            burnTime -= Time.deltaTime;
+            stats.healthRegen = stats.healthRegen - burnDamage;
+            if (burnTime <= 0)
+            {                
+                burned.SetActive(false);
+            }
+        }
+        if (poisonTime > 0)
+        {            
+            stats.healthRegen = stats.healthRegen - poisonDamage * (5 / (poisonTime + 1));
+            poisonTime -= Time.deltaTime;
+            if (poisonTime <= 0)
+            {                
+                poisoned.SetActive(false);
+            }
+        }
+        if (bleedTime > 0)
+        {
+            bleedTime -= Time.deltaTime;
+            stats.healthRegen = stats.healthRegen - bleedDamage;
+            if (bleedTime <= 0)
+            {                
+                bleeding.SetActive(false);
+            }
+        }
+        if (slowTime > 0)
+        {
+            slowTime -= Time.deltaTime;
+            playerMovement.moveSpeed = playerMovement.maxSpeed * 0.5f;
+        }
+        if (paralyseTime > 0)
+        {
+            paralyseTime -= Time.deltaTime;
+            playerMovement.moveSpeed = 0f;
+            if (paralyseTime <= 0)
+            {
+                spriteRenderer.color = Color.white;                                
+            }
+        }
+        if (weakTime > 0)
+        {
+            weakTime -= Time.deltaTime;
+            stats.stats.damageMin = minDamage * 0.5f;
+            stats.stats.damageMax = maxDamage * 0.5f;
+            if (weakTime <= 0)
+            {
+                weakened.SetActive(false);
+            }
         }
     }
 
     public void UpdateStats()
     {
-        playerMovement.maxSpeed = PlayerStats.playerStats.stats.moveSpeed;
+        stats = PlayerStats.playerStats;
+        playerMovement.maxSpeed = stats.stats.moveSpeed;
         playerMovement.moveSpeed = playerMovement.maxSpeed;
-        SetWeapon(PlayerStats.playerStats.stats.weapon);
+        minDamage = stats.stats.damageMin;
+        maxDamage = stats.stats.damageMax;
+        SetWeapon(stats.stats.weapon);
         oldSpecial = gameObject.GetComponent<SpecialAttack>();
         Destroy(gameObject.GetComponent<SpecialAttack>());
-        SetSpecial(PlayerStats.playerStats.stats.special);        
-        playerMovement.animator.runtimeAnimatorController = Resources.Load("Animation/" + PlayerStats.playerStats.stats.character + "_movement_controller") as RuntimeAnimatorController;
-        playerMovement.animator.SetFloat("moveSpeed", PlayerStats.playerStats.stats.moveSpeed / 3f);
+        SetSpecial(stats.stats.special);        
+        playerMovement.animator.runtimeAnimatorController = Resources.Load("Animation/" + stats.stats.character + "_movement_controller") as RuntimeAnimatorController;
+        playerMovement.animator.SetFloat("moveSpeed", stats.stats.moveSpeed / 3f);
     }
 
     private void SetWeapon(SkillPath.Weapon weapon)
@@ -68,6 +145,51 @@ public class Player : MonoBehaviour
         {
             case SkillPath.Special.DASH:
                 gameObject.AddComponent<Dash>();
+                break;
+            default:
+                break;
+        }
+    }
+
+    // straight damage
+    public void DealDamage(float damage)
+    {
+        PlayerStats.playerStats.DealDamage(damage);
+    }
+
+    // damage with knockback
+    public void DealDamage(float damage, Vector2 hitPos, float knockback)
+    {
+        PlayerStats.playerStats.DealDamage(damage);
+        Vector2 recoilForce = (new Vector2(transform.position.x, transform.position.y) - hitPos).normalized * knockback;
+        playerMovement.Recoil(recoilForce);
+    }
+
+    public void InflictDebuff(Debuff debuff, float time)
+    {
+        switch (debuff)
+        {
+            case Debuff.BURN:
+                burned.SetActive(true);
+                burnTime = time;
+                break;
+            case Debuff.POISON:
+                poisoned.SetActive(true);
+                poisonTime = time;
+                break;
+            case Debuff.BLEED:
+                bleeding.SetActive(true);
+                bleedTime = time;
+                break;
+            case Debuff.SLOW:
+                slowTime = time;
+                break;
+            case Debuff.PARALYSE:
+                spriteRenderer.color = new Color(0.4f, 0.8f, 1f, 1);
+                paralyseTime = time;
+                break;
+            case Debuff.WEAK:
+                weakTime = time;
                 break;
             default:
                 break;
