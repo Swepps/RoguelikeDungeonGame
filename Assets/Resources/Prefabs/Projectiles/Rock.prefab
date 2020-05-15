@@ -4895,7 +4895,8 @@ MonoBehaviour:
   collisionTags:
   - Player
   - Walls
-  shootSound: ArrowShoot2
+  shootSound: RockImpact
   enemyDebuff: 5
   playerDebuff: 6
   debuffTime: 0
+  playerProjectile: 0

@@ -9,6 +9,8 @@ public class PlayerStats : MonoBehaviour
 {
     public static PlayerStats playerStats;
 
+    public LevelChanger levelChanger;
+
     public GameObject playerPrefab;
     private GameObject localPlayer;
     public Transform playerPos;
@@ -33,7 +35,7 @@ public class PlayerStats : MonoBehaviour
     public int enemiesKilled;
 
     public int level, path;
-    public int[] levels = { 30, 5000};
+    public int[] levels = { 15, 50, 5000};
     public float experience;
 
     public float healthRegen;
@@ -83,7 +85,10 @@ public class PlayerStats : MonoBehaviour
         SetAbilityUI();
 
         if (!stats.invulnerable)
+        {
             health += healthRegen * Time.deltaTime;
+            CheckDeath();
+        }
         SetHealthUI();
 
         if (damageCooldown > 0)
@@ -132,7 +137,7 @@ public class PlayerStats : MonoBehaviour
             FindObjectOfType<AudioManager>().Play("PlayerDeath");
             FindObjectOfType<AudioManager>().Play("GameOver");
             health = 0;
-            SceneManager.LoadScene(0);        
+            levelChanger.FadeToLevel(2);     
         }
         else
             FindObjectOfType<AudioManager>().Play("PlayerHit");
@@ -144,6 +149,7 @@ public class PlayerStats : MonoBehaviour
         if (demonKey && ogreKey && zombieKey)
         {
             FindObjectOfType<AudioManager>().Play("WinNoise");
+            levelChanger.FadeToLevel(2);
         }
     }
 

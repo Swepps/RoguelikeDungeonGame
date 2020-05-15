@@ -154,13 +154,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: HealthPickup
     clip: {fileID: 8300000, guid: 456358af40b1bba4db4151caacb373e7, type: 3}
-    volume: 0.977
+    volume: 0.869
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: KeyGet
     clip: {fileID: 8300000, guid: 5e41fa10d986c6f45b025adb225e5246, type: 3}
-    volume: 0.977
+    volume: 0.795
     pitch: 1
     loop: 0
     source: {fileID: 0}

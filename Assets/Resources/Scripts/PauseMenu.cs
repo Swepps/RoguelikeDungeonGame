@@ -23,7 +23,11 @@ public class PauseMenu : MonoBehaviour
         {
             if (!GameIsPaused)
             {
-                SceneManager.LoadScene(0);
+                Pause();
+            }
+            else
+            {
+                Resume();
             }
         }
     }
@@ -38,7 +42,6 @@ public class PauseMenu : MonoBehaviour
 
     public void Pause()
     {
-        levelUpUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
@@ -56,6 +59,13 @@ public class PauseMenu : MonoBehaviour
                 for (int i = 0; i < 3; i++)
                 {
                     potentialSkills[i] = SkillPath.skillPaths[i + 1];
+                }
+                break;
+            case 1:
+                potentialSkills = new SkillPath[2];
+                for (int i = 0; i < 2; i++)
+                {
+                    potentialSkills[i] = SkillPath.skillPaths[i + 4 + PlayerStats.playerStats.path];
                 }
                 break;
         }

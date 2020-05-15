@@ -1,4 +1,6 @@
 GitHub Pages:
 https://swepps.github.io/RoguelikeDungeonGame/
-Itch.io
-https://swepps.itch.io/dungeon-roguelike-bullet-hell
+
+PRESS P in-game to open Developer Tools
+
+There is so much more I want to add to the game but here we are. I hope you like it!

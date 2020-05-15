@@ -202,8 +202,9 @@ MonoBehaviour:
   exp: {fileID: 3791461768808099987, guid: d4150d8f7c6e50f43954562ed829f16c, type: 3}
   healthItem: {fileID: 3791461768808099987, guid: e97476f08c28f7b4fb363473507c681b,
     type: 3}
+  key: {fileID: 0}
   coinAmount: 0
-  expAmount: 5
+  expAmount: 8
   healthDropChance: 0.4
   touchDamageMin: 3
   touchDamageMax: 5

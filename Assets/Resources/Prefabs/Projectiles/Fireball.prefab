@@ -4861,7 +4861,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 5
-  knockback: 1
+  knockback: 0.2
   collisionTags:
   - Walls
   - Enemy

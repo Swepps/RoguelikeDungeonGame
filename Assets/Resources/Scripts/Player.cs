@@ -7,7 +7,9 @@ public class Player : MonoBehaviour
     public PlayerMovement playerMovement;
     private SpriteRenderer spriteRenderer;
     private GameObject bow, sword, staff;
+    public GameObject thrownSword, specialFireball;
     private SpecialAttack oldSpecial;
+    private SpecialAttack special;
 
     public enum Debuff { BURN, POISON, BLEED, SLOW, PARALYSE, WEAK, NONE }
 
@@ -46,7 +48,8 @@ public class Player : MonoBehaviour
             stats.SetExpUI();
         }
         stats.healthRegen = stats.stats.healthRegenRate;
-        playerMovement.moveSpeed = playerMovement.maxSpeed;
+        if (playerMovement.moveSpeed < playerMovement.maxSpeed)
+            playerMovement.moveSpeed = playerMovement.maxSpeed;
         stats.stats.damageMin = minDamage;
         stats.stats.damageMax = maxDamage;
         if (burnTime > 0)
@@ -100,6 +103,10 @@ public class Player : MonoBehaviour
                 weakened.SetActive(false);
             }
         }
+
+
+        if (special != null)
+            special.ManualUpdate();
     }
 
     public void UpdateStats()
@@ -110,8 +117,10 @@ public class Player : MonoBehaviour
         minDamage = stats.stats.damageMin;
         maxDamage = stats.stats.damageMax;
         SetWeapon(stats.stats.weapon);
+        PlayerStats.playerStats.health = PlayerStats.playerStats.stats.maxHealth;
+        PlayerStats.playerStats.ability = PlayerStats.playerStats.stats.maxAbility;
         oldSpecial = gameObject.GetComponent<SpecialAttack>();
-        Destroy(gameObject.GetComponent<SpecialAttack>());
+        Destroy(oldSpecial);
         SetSpecial(stats.stats.special);        
         playerMovement.animator.runtimeAnimatorController = Resources.Load("Animation/" + stats.stats.character + "_movement_controller") as RuntimeAnimatorController;
         playerMovement.animator.SetFloat("moveSpeed", stats.stats.moveSpeed / 3f);
@@ -145,10 +154,33 @@ public class Player : MonoBehaviour
         {
             case SkillPath.Special.DASH:
                 gameObject.AddComponent<Dash>();
+                this.special = GetComponent<Dash>();
+                break;
+            case SkillPath.Special.THROWSWORD:
+                gameObject.AddComponent<ThrowProjectile>();
+                gameObject.GetComponent<ThrowProjectile>().projectile = thrownSword;
+                gameObject.GetComponent<ThrowProjectile>().projectileForce = 4;
+                gameObject.GetComponent<ThrowProjectile>().minDamage = 10;
+                gameObject.GetComponent<ThrowProjectile>().maxDamage = 35;
+                gameObject.GetComponent<ThrowProjectile>().shotSpread = 1;
+                gameObject.GetComponent<ThrowProjectile>().projKnockback = 4f;
+                gameObject.GetComponent<ThrowProjectile>().Initialise();
+                this.special = GetComponent<ThrowProjectile>();
+                break;
+            case SkillPath.Special.FIREBALL:
+                gameObject.AddComponent<ThrowProjectile>();
+                gameObject.GetComponent<ThrowProjectile>().projectile = specialFireball;
+                gameObject.GetComponent<ThrowProjectile>().projectileForce = 6;
+                gameObject.GetComponent<ThrowProjectile>().minDamage = 10;
+                gameObject.GetComponent<ThrowProjectile>().maxDamage = 20;
+                gameObject.GetComponent<ThrowProjectile>().shotSpread = 1;
+                gameObject.GetComponent<ThrowProjectile>().projKnockback = 0.5f;
+                gameObject.GetComponent<ThrowProjectile>().Initialise();
+                this.special = GetComponent<ThrowProjectile>();
                 break;
             default:
                 break;
-        }
+        }        
     }
 
     // straight damage

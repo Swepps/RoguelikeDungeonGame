@@ -9,7 +9,7 @@ public class Dash : SpecialAttack
 
     private void Start()
     {
-        playerMov = PlayerStats.playerStats.GetPlayerObject().GetComponent<PlayerMovement>();
+        playerMov = GetComponent<PlayerMovement>();
     }
 
     protected override bool Special()    {

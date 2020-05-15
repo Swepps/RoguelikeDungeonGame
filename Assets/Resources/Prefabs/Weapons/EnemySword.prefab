@@ -290,8 +290,8 @@ MonoBehaviour:
   shotSpread: 0
   collisionTags:
   - Player
-  swingSpeed: 3
-  swingSound: SwordSwing
+  swingSpeed: 2
+  swingSound: SwordSwing2
   bleeds: 0
 --- !u!114 &2300953952394475990
 MonoBehaviour:

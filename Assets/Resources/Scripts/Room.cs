@@ -161,6 +161,7 @@ public class Room : MonoBehaviour
                 }
             }
         }
+        FindObjectOfType<AudioManager>().Play("DoorOpen");
         doorsOpen = true;
     }
 

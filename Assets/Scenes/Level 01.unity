@@ -832,6 +832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b1ce385cf4771a4daea30b3058242a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  levelChanger: {fileID: 785184322}
   playerPrefab: {fileID: 692610469682610234, guid: f60f5f39c02013841ba16d04d192bd82,
     type: 3}
   playerPos: {fileID: 0}
@@ -855,7 +856,7 @@ MonoBehaviour:
   enemiesKilled: 0
   level: 0
   path: 0
-  levels: 3200000088130000
+  levels: 190000003200000088130000
   experience: 0
   healthRegen: 0
 --- !u!4 &419304912
@@ -870,7 +871,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &419304913
 MonoBehaviour:
@@ -1591,7 +1592,7 @@ RectTransform:
   - {fileID: 693359202}
   - {fileID: 1358659102}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1627,6 +1628,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   perfStats: {fileID: 1358659104}
+--- !u!114 &785184322 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3099903343721406355, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
+    type: 3}
+  m_PrefabInstance: {fileID: 3099903343734569311}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487a23d843307c148b29b423892ddb16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &835485296
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,7 +2692,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2711,9 +2724,9 @@ MonoBehaviour:
 
     Collect the KEYS from the
 
-    ZOMBIE, DEMON and OGRE
+    zombie, demon and ogre
 
-    mini-bosses to WIN'
+    mini-bosses to ESCAPE!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2782,7 +2795,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: -0.41029263, w: 0}
   m_textInfo:
     textComponent: {fileID: 1575110266}
-    characterCount: 125
+    characterCount: 129
     spriteCount: 0
     spaceCount: 37
     wordCount: 21
@@ -2935,7 +2948,7 @@ Transform:
   m_LocalScale: {x: 0.31596893, y: 0.31596893, z: 0.31596893}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1617431094
 GameObject:
@@ -3522,7 +3535,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1842076219
 GameObject:
@@ -3956,7 +3969,7 @@ PrefabInstance:
     - target: {fileID: 1057260162807810569, guid: 8d57c6f47fb47d74d9f59685e8f856f3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1057260162807810569, guid: 8d57c6f47fb47d74d9f59685e8f856f3,
         type: 3}
@@ -4037,7 +4050,7 @@ PrefabInstance:
     - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
         type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3099903343721406356, guid: e1651e9dc9077ad4aba3ecc37f8a9f26,
         type: 3}

@@ -7,6 +7,7 @@ public class Weapon : MonoBehaviour
     public GameObject projectile;
     public float rotateOffset;
     public float projectileRotationOffset;
+    private float shotAngle;
 
     protected SpriteRenderer spriteRenderer;
 
@@ -35,6 +36,7 @@ public class Weapon : MonoBehaviour
         attacksPerSecond = PlayerStats.playerStats.stats.attacksPerSecond;
         projectileForce = PlayerStats.playerStats.stats.projectileForce;
         knockback = PlayerStats.playerStats.stats.knockback;
+        shotSpread = PlayerStats.playerStats.stats.shotSpread;
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = Resources.Load<Sprite>("Sprites/weapon_" + PlayerStats.playerStats.stats.weaponSprite);
     }
@@ -51,18 +53,48 @@ public class Weapon : MonoBehaviour
         Vector3 spawnPos = transform.position;
         spawnPos.x += direction.x;
         spawnPos.y += direction.y;
-        GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.AngleAxis(angle + projectileRotationOffset, Vector3.forward));
-        newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-        newProjectile.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));
+        if (shotSpread > 1)
+        {
+            shotAngle =  - 10.0f * shotSpread/2;
+            for (int i = 0; i < shotSpread; i++)
+            {                
+                GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.AngleAxis(angle + projectileRotationOffset + shotAngle, Vector3.forward));                
+                newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
+                newProjectile.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(shotAngle, Vector3.forward) * newProjectile.GetComponent<Rigidbody2D>().velocity;
+                newProjectile.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));
+                shotAngle += 10.0f;
+            }
+        }
+        else
+        {
+            GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.AngleAxis(angle + projectileRotationOffset, Vector3.forward));
+            newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
+            newProjectile.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));
+        }
     }
 
     virtual public void ShootProjectile(Vector2 spawnPos)
     {
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Vector2 direction = (mousePos - new Vector2(transform.position.x, transform.position.y)).normalized;
-        GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.AngleAxis(Vector2.SignedAngle(Vector2.up, direction), Vector3.forward));
-        newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
-        newProjectile.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));
+        if (shotSpread > 1)
+        {
+            shotAngle = -10.0f * shotSpread / 2;
+            for (int i = 0; i < shotSpread; i++)
+            {
+                GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.AngleAxis(angle + projectileRotationOffset + shotAngle, Vector3.forward));
+                newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
+                newProjectile.GetComponent<Rigidbody2D>().velocity = Quaternion.AngleAxis(shotAngle, Vector3.forward) * newProjectile.GetComponent<Rigidbody2D>().velocity;
+                newProjectile.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));
+                shotAngle += 10.0f;
+            }
+        }
+        else
+        {
+            GameObject newProjectile = Instantiate(projectile, spawnPos, Quaternion.AngleAxis(angle + projectileRotationOffset, Vector3.forward));
+            newProjectile.GetComponent<Rigidbody2D>().velocity = direction * projectileForce;
+            newProjectile.GetComponent<Projectile>().SetDamage(Random.Range(minDamage, maxDamage));
+        }
     }
 
     protected void RotateWeapon()

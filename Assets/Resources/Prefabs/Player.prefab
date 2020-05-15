@@ -203,9 +203,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerMovement: {fileID: 692610469682610235}
+  thrownSword: {fileID: 8859452300765557663, guid: b6a0e071222d330478c1ece54a39e472,
+    type: 3}
+  specialFireball: {fileID: 8859452300765557663, guid: 14f757d35835f944c8a0aef304c02886,
+    type: 3}
   burnDamage: 5
   poisonDamage: 1
-  bleedDamage: 0
+  bleedDamage: 3
   burned: {fileID: 783476544626806826}
   poisoned: {fileID: 8472337193322845974}
   bleeding: {fileID: 2919256328081315567}

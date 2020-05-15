@@ -67,7 +67,6 @@ public class EnemyCollections : MonoBehaviour
                 new List<GameObject>
                 {
                     mudSlime,
-                    mudSlime,
                     goblin,
                     slime,                    
                 },
@@ -84,8 +83,6 @@ public class EnemyCollections : MonoBehaviour
                 new List<GameObject>
                 {
                     goblin,
-                    goblin,
-                    mudSlime,
                     mudSlime,
                     mudSlime,
                     mudSlime,
@@ -97,18 +94,56 @@ public class EnemyCollections : MonoBehaviour
                 // option 1
                 new List<GameObject>
                 {
-                    bossDemon,
-                    bossOgre,
-                    bossZombie,
+                    goblin,
+                    goblin,
+                    goblin,
                 },
 
                 // option 2
                 new List<GameObject>
                 {
-                    bossZombie,
-                    bossOgre,
                     slime,
                     slime,
+                    mudSlime,
+                    mudSlime,
+                    mudSlime,
+                    mudSlime,
+                },
+
+                // option 3
+                new List<GameObject>
+                {
+                    slime,
+                    mudSlime,
+                    goblin,
+                    goblin,
+                },
+            },
+            // distance 3 options
+            new List<List<GameObject>>
+            {
+                // option 1
+                new List<GameObject>
+                {
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                },
+
+                // option 2
+                new List<GameObject>
+                {
+                    slime,
+                    slime,
+                    slime,
+                    goblin,
+                    goblin,
+                    goblin,
                 },
 
                 // option 3
@@ -118,8 +153,48 @@ public class EnemyCollections : MonoBehaviour
                     mudSlime,
                     mudSlime,
                     mudSlime,
-                    bossOgre,
+                    goblin,
+                    goblin,
+                    goblin,
+                    goblin,
+                },
+            },
+            // distance 4 options
+            new List<List<GameObject>>
+            {
+                // option 1
+                new List<GameObject>
+                {
+                    bossDemon,
+                    slime,
+                    slime,
+                    mudSlime,
+                    mudSlime,
+                },
+
+                // option 2
+                new List<GameObject>
+                {
                     bossZombie,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                    slime,
+                },
+
+                // option 3
+                new List<GameObject>
+                {
+                    bossOgre,
+                    goblin,
+                    goblin,
+                    goblin,
+                    goblin,
+                    goblin,
+                    goblin,
+                    goblin,
                 },
             }
         };

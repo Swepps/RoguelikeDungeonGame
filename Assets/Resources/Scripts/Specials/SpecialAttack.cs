@@ -5,10 +5,11 @@ public class SpecialAttack : MonoBehaviour
 {
 
     // Update is called once per frame
-    virtual protected void Update()
+    virtual public void ManualUpdate()
     {
         if (Input.GetKeyDown(KeyCode.Space) && PlayerStats.playerStats.ability >= PlayerStats.playerStats.stats.abilityCost)
         {
+            Debug.Log("ok");
             if (Special())
             {
                 PlayerStats.playerStats.ability -= PlayerStats.playerStats.stats.abilityCost;

@@ -33,7 +33,7 @@ public class PlayerMovement : MonoBehaviour
             direction.x = Input.GetAxisRaw("Horizontal");
             direction.y = Input.GetAxisRaw("Vertical");
             direction.Normalize();
-        }        
+        }
 
         if (direction != Vector2.zero) // aka, is moving
         {
