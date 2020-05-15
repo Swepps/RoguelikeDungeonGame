@@ -85,7 +85,7 @@ public class EnemyAI : MonoBehaviour
                     }
                     else
                     {
-                        while (!enemyPathfinding.MoveTo(roamingPos))
+                        if (!enemyPathfinding.MoveTo(roamingPos))
                             roamingPos = GetRoamingPos();
                         float reachedPositionDistance = 0.5f;
                         if (Vector2.Distance(transform.position, enemyPathfinding.GetTargetPos()) < reachedPositionDistance)

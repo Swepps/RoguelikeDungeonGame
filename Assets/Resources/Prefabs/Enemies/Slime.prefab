@@ -225,7 +225,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
-  maxSpeed: 1.4
+  maxSpeed: 2
 --- !u!114 &5280896586998353845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -239,8 +239,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackType: 1
-  moveType: 0
-  chargeCooldown: 0
+  moveType: 1
+  chargeCooldown: 5
   attackRange: 6
   targetRange: 4
   roamingRange: 6
@@ -257,8 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   trail: {fileID: 1499965366815033754, guid: 289cb85992430d3468a637195284bfe8, type: 3}
-  trailCooldown: 0.22
-  trailTimeLength: 2
+  trailCooldown: 0.15
+  trailTimeLength: 5
 --- !u!1 &1258880193488241131
 GameObject:
   m_ObjectHideFlags: 0

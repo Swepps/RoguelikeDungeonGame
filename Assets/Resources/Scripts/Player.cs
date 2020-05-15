@@ -121,7 +121,7 @@ public class Player : MonoBehaviour
         PlayerStats.playerStats.ability = PlayerStats.playerStats.stats.maxAbility;
         oldSpecial = gameObject.GetComponent<SpecialAttack>();
         Destroy(oldSpecial);
-        SetSpecial(stats.stats.special);        
+        SetSpecial(stats.stats.special);
         playerMovement.animator.runtimeAnimatorController = Resources.Load("Animation/" + stats.stats.character + "_movement_controller") as RuntimeAnimatorController;
         playerMovement.animator.SetFloat("moveSpeed", stats.stats.moveSpeed / 3f);
     }
@@ -163,7 +163,7 @@ public class Player : MonoBehaviour
                 gameObject.GetComponent<ThrowProjectile>().minDamage = 10;
                 gameObject.GetComponent<ThrowProjectile>().maxDamage = 35;
                 gameObject.GetComponent<ThrowProjectile>().shotSpread = 1;
-                gameObject.GetComponent<ThrowProjectile>().projKnockback = 4f;
+                gameObject.GetComponent<ThrowProjectile>().projKnockback = 8f;
                 gameObject.GetComponent<ThrowProjectile>().Initialise();
                 this.special = GetComponent<ThrowProjectile>();
                 break;
@@ -171,8 +171,8 @@ public class Player : MonoBehaviour
                 gameObject.AddComponent<ThrowProjectile>();
                 gameObject.GetComponent<ThrowProjectile>().projectile = specialFireball;
                 gameObject.GetComponent<ThrowProjectile>().projectileForce = 6;
-                gameObject.GetComponent<ThrowProjectile>().minDamage = 10;
-                gameObject.GetComponent<ThrowProjectile>().maxDamage = 20;
+                gameObject.GetComponent<ThrowProjectile>().minDamage = 25;
+                gameObject.GetComponent<ThrowProjectile>().maxDamage = 30;
                 gameObject.GetComponent<ThrowProjectile>().shotSpread = 1;
                 gameObject.GetComponent<ThrowProjectile>().projKnockback = 0.5f;
                 gameObject.GetComponent<ThrowProjectile>().Initialise();

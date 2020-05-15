@@ -27,9 +27,9 @@ public class EnemyCollections : MonoBehaviour
     public List<GameObject> GetRandomEnemyGroup(int distance)
     {
         if (distance < Instance.enemyGroups.Count)
-            return Instance.enemyGroups[distance][Random.Range(0, Instance.enemyGroups[distance].Count - 1)];
+            return Instance.enemyGroups[distance][Random.Range(0, Instance.enemyGroups[distance].Count)];
         else
-            return Instance.enemyGroups[Instance.enemyGroups.Count - 1][Random.Range(0, Instance.enemyGroups[Instance.enemyGroups.Count - 1].Count - 1)];
+            return Instance.enemyGroups[Instance.enemyGroups.Count - 1][Random.Range(0, Instance.enemyGroups[Instance.enemyGroups.Count - 1].Count)];
     }
 
     public void InitialiseEnemyGroups()

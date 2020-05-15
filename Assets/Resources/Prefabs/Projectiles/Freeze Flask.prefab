@@ -4900,7 +4900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 206dba851f33a5c4897b342e4325f62e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  range: 3
+  range: 4
   knockback: 0.001
   collisionTags:
   - Player

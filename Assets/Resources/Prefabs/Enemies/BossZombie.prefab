@@ -185,9 +185,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 80
+  maxHealth: 140
   healthRegenRate: 0
-  maxHealthRegenRate: 5
+  maxHealthRegenRate: 2
   burnDamage: 4
   poisonDamage: 1
   bleedDamage: 1
